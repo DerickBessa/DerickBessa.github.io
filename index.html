@@ -9,16 +9,11 @@
   <meta content="Desenvolvedor Full Stack | React | Angular | Node.js | Java | Python | IA" name="description">
   <meta content="desenvolvedor full stack, react, angular, nodejs, java, python, IA, IFCE" name="keywords">
 
-  <!-- Favicons -->
   <link href="assets/img/icon.png" rel="icon">
   <link href="assets/img/icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -26,12 +21,318 @@
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 
   <link href="style.css" rel="stylesheet">
+
+  <!-- GSAP para animações elegantes -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* ─── Hero tagline ──────────────────────────────── */
+    #hero .hero-tagline {
+      font-size: 1rem !important;
+      font-family: "Open Sans", sans-serif !important;
+      color: var(--hero-font-color) !important;
+      opacity: 0.62;
+      margin-top: 12px;
+      margin-bottom: 0;
+      max-width: 460px;
+      line-height: 1.6;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+    @media (max-width: 992px) {
+      #hero .hero-tagline {
+        font-size: 0.88rem !important;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+    }
+
+    /* ─── CV Buttons ─────────────────────────────────── */
+    .cv-buttons {
+      display: flex; gap: 12px; flex-wrap: wrap; margin-top: 1.5rem;
+    }
+    @media (max-width: 992px) {
+      .cv-buttons { justify-content: center; }
+    }
+
+    .btn-cv {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 22px; border-radius: 50px;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em;
+      text-decoration: none; transition: all 0.3s ease;
+      font-family: "Poppins", sans-serif;
+      position: relative; overflow: hidden;
+    }
+    .btn-cv::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(255,255,255,0.12);
+      transform: translateX(-100%);
+      transition: transform 0.35s ease;
+    }
+    .btn-cv:hover::after { transform: translateX(0); }
+
+    .btn-cv-primary {
+      background: var(--accent-color-bg);
+      color: var(--white-color);
+      border: 2px solid var(--accent-color-bg);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    .btn-cv-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      color: var(--white-color);
+    }
+    .btn-cv-outline {
+      background: transparent;
+      color: var(--hero-font-color);
+      border: 2px solid var(--hero-font-color);
+      opacity: 0.75;
+    }
+    .btn-cv-outline:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+      color: var(--hero-cor-rosa);
+      border-color: var(--hero-cor-rosa);
+    }
+
+    /* ─── Botão Chaos ────────────────────────────────── */
+    #chaos-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 22px; border-radius: 50px;
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em;
+      border: 2px solid rgba(255, 60, 0, 0.5);
+      background: transparent;
+      color: rgba(255, 100, 0, 0.9);
+      font-family: "Poppins", sans-serif;
+      cursor: pointer; transition: all 0.3s ease;
+      margin-top: 0;
+      text-transform: uppercase;
+    }
+    #chaos-btn:hover {
+      background: rgba(255, 60, 0, 0.12);
+      border-color: rgba(255, 60, 0, 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(255,60,0,0.25);
+    }
+    #chaos-btn.chaos-active {
+      border-color: #ff003c;
+      color: #ff003c;
+      background: rgba(255,0,60,0.08);
+      animation: chaos-btn-pulse 1.5s infinite;
+    }
+    @keyframes chaos-btn-pulse {
+      0%,100% { box-shadow: 0 0 8px rgba(255,0,60,0.4); }
+      50% { box-shadow: 0 0 24px rgba(255,0,60,0.8), 0 0 40px rgba(255,0,60,0.3); }
+    }
+
+    /* ─── CV Buttons no Resume ───────────────────────── */
+    .resume-cv-buttons {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      justify-content: center; margin-top: 1.2rem;
+    }
+    .btn-cv-dark {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 22px; border-radius: 50px;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em;
+      text-decoration: none; transition: all 0.3s ease;
+      font-family: "Poppins", sans-serif;
+      background: var(--accent-color-bg);
+      color: var(--white-color);
+      border: 2px solid var(--accent-color-bg);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+    .btn-cv-dark:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      color: var(--white-color);
+    }
+    .btn-cv-dark-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 22px; border-radius: 50px;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em;
+      text-decoration: none; transition: all 0.3s ease;
+      font-family: "Poppins", sans-serif;
+      background: transparent;
+      color: var(--accent-color-font);
+      border: 2px solid var(--accent-color-font);
+    }
+    .btn-cv-dark-outline:hover {
+      background: var(--accent-color-bg);
+      color: var(--white-color);
+      transform: translateY(-2px);
+    }
+
+    /* ─── Hover nos cards — shine effect ─────────────── */
+    .projects-item {
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.4s ease !important;
+      overflow: hidden;
+    }
+    .projects-item::before {
+      content: '';
+      position: absolute;
+      top: -60%; left: -60%;
+      width: 60%; height: 200%;
+      background: linear-gradient(
+        105deg,
+        transparent 40%,
+        rgba(255,255,255,0.08) 50%,
+        transparent 60%
+      );
+      transform: skewX(-20deg) translateX(-100%);
+      transition: transform 0s;
+      pointer-events: none;
+    }
+    .projects-item:hover::before {
+      transform: skewX(-20deg) translateX(500%);
+      transition: transform 0.7s ease;
+    }
+    .projects-item:hover {
+      transform: translateY(-12px) scale(1.02) !important;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.18) !important;
+    }
+
+    /* ─── Linha da timeline — draw animation ─────────── */
+    .timeline-animated .resume-item {
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .timeline-animated .resume-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ─── Scroll reveal elegante ─────────────────────── */
+    .reveal-fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Hero entrada ───────────────────────────────── */
+    #hero h1 { opacity: 0; transform: translateY(20px); }
+    #hero p:first-of-type { opacity: 0; }
+    #hero .hero-tagline { opacity: 0; }
+    #hero .cv-buttons { opacity: 0; transform: translateY(10px); }
+    #hero .cv-buttons-extra { opacity: 0; transform: translateY(10px); }
+    #hero .social-links { opacity: 0; }
+
+    /* ─── Modal Chaos ────────────────────────────────── */
+    #chaos-modal {
+      position: fixed; inset: 0; z-index: 99995;
+      background: rgba(0,0,0,0.7);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.35s ease;
+      backdrop-filter: blur(4px);
+    }
+    #chaos-modal.visible { opacity: 1; }
+
+    .chaos-modal-box {
+      background: #0a0a0a;
+      border: 1px solid #ff003c44;
+      border-radius: 16px;
+      padding: 48px 40px 36px;
+      max-width: 420px; width: 90%;
+      text-align: center;
+      transform: scale(0.85) translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 0 60px rgba(255,0,60,0.15), 0 20px 60px rgba(0,0,0,0.5);
+      font-family: "Poppins", sans-serif;
+    }
+    #chaos-modal.visible .chaos-modal-box {
+      transform: scale(1) translateY(0);
+    }
+    .chaos-modal-icon {
+      font-size: 3rem; margin-bottom: 12px;
+      animation: modal-icon-bounce 0.8s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes modal-icon-bounce {
+      0% { transform: scale(0) rotate(-30deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+    .chaos-modal-title {
+      font-size: 1.8rem; font-weight: 800;
+      color: #ff003c; letter-spacing: 0.1em;
+      margin-bottom: 10px; font-family: "Raleway", sans-serif;
+    }
+    .chaos-modal-sub {
+      color: #ccc; font-size: 0.95rem; margin-bottom: 6px;
+    }
+    .chaos-modal-sub strong { color: #fff; }
+    .chaos-modal-warn {
+      color: #ff9500; font-size: 0.82rem;
+      margin-bottom: 28px; opacity: 0.85;
+    }
+    .chaos-modal-btns {
+      display: flex; gap: 12px; justify-content: center;
+      flex-wrap: wrap;
+    }
+    .chaos-modal-btns button {
+      padding: 10px 24px; border-radius: 50px;
+      font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.05em; cursor: pointer;
+      transition: all 0.25s ease; font-family: "Poppins", sans-serif;
+      border: 2px solid;
+    }
+    #chaos-cancel {
+      background: transparent; color: #888;
+      border-color: #333;
+    }
+    #chaos-cancel:hover {
+      color: #ccc; border-color: #666;
+    }
+    #chaos-confirm {
+      background: #ff003c; color: #fff;
+      border-color: #ff003c;
+      box-shadow: 0 4px 20px rgba(255,0,60,0.4);
+    }
+    #chaos-confirm:hover {
+      background: #cc0030;
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 30px rgba(255,0,60,0.6);
+    }
+    .chaos-modal-footer {
+      font-size: 0.72rem; color: #444;
+      margin-top: 20px; margin-bottom: 0;
+    }
+
+    /* ─── Skill icons animados ───────────────────────── */
+    .resume-item-grid li {
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s ease;
+    }
+    .resume-item-grid li:hover {
+      transform: translateY(-4px) scale(1.08);
+    }
+
+    /* ─── Social links hover ─────────────────────────── */
+    #hero .social-links a {
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+                  color 0.3s ease !important;
+    }
+    #hero .social-links a:hover {
+      transform: translateY(-4px) scale(1.15) !important;
+    }
+
+    /* ─── Nav item hover glow ────────────────────────── */
+    .nav-menu a {
+      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1) !important;
+    }
+    .nav-menu a:hover {
+      transform: scale(1.08);
+    }
+  </style>
 </head>
 
-<body class="dark-theme">
+<body class="">
   <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
 
-  <!-- ======= Header ======= -->
   <header id="header" class="d-flex flex-column justify-content-center">
     <nav id="navbar" class="navbar nav-menu">
       <ul>
@@ -43,111 +344,121 @@
     </nav>
   </header>
 
-  <!-- ======= Hero Section ======= -->
+  <!-- ======= Hero ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center">
     <div class="container" data-aos="zoom-in" data-aos-delay="100">
       <div class="row justify-content-center">
         <div class="col-lg-10">
           <h1>Derick Bessa</h1>
           <p><span class="typed" data-typed-items="Full Stack Developer, Backend Developer, Founder @ TáNaLista"></span></p>
-          <div class="social-links">
+
+          <p class="hero-tagline">
+            Unindo IA e desenvolvimento Full Stack para criar produtos funcionais, escaláveis e impactantes.
+          </p>
+
+          <div class="cv-buttons">
+            <a href="https://cv-resumes.vercel.app/BR/resume-ptbr.html" target="_blank" class="btn-cv btn-cv-primary">
+              <i class="bx bx-file"></i> Currículo · PT
+            </a>
+            <a href="https://cv-resumes.vercel.app/english/resume.html" target="_blank" class="btn-cv btn-cv-outline">
+              <i class="bx bx-file"></i> Resume · EN
+            </a>
+          </div>
+
+          <!-- Chaos button numa linha separada -->
+          <div class="cv-buttons cv-buttons-extra" style="margin-top: 0.75rem;">
+            <button id="chaos-btn" onclick="ChaosMode.toggle()">
+              ⚡ Modo Loucura
+            </button>
+          </div>
+
+          <div class="social-links" style="margin-top: 1.8rem;">
             <a href="https://github.com/DerickBessa" class="github"><i class="bx bxl-github"></i></a>
             <a href="https://linkedin.com/in/derickbessa" class="linkedin"><i class="bx bxl-linkedin"></i></a>
             <a href="https://instagram.com/_dbessa" class="instagram"><i class="bx bxl-instagram"></i></a>
-            <a href="mailto:derickbessa12@gmail.com" class="email"><i class="bx bx-envelope"></i></a>
+            <a href="/cdn-cgi/l/email-protection#88ecedfae1ebe3eaedfbfbe9b9bac8efe5e9e1e4a6ebe7e5" class="email"><i class="bx bx-envelope"></i></a>
           </div>
         </div>
       </div>
-	  
+    </div>
   </section>
 
-  	<a href="#about" class="hero-scroll-down scrollto">
-      <span>Scroll</span>
-      <i class="bx bx-mouse-alt"></i>
-      <div class="scroll-arrow"></div>
-    </a>
+  <a href="#about" class="hero-scroll-down scrollto">
+    <span>Scroll</span>
+    <i class="bx bx-mouse-alt"></i>
+    <div class="scroll-arrow"></div>
+  </a>
 
   <main id="main">
-    <!-- ======= About Section ======= -->
+    <!-- ======= About ======= -->
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
+        <div class="section-title reveal-fade">
           <h2>SOBRE MIM</h2>
           <p class="fst-italic">"Quem é Derick Bessa de Almeida?"</p>
         </div>
-
         <div class="row gy-4 justify-center">
           <div class="col-lg-4">
-            <img src="assets/img/derick.jpg" class="img-fluid"  alt="Derick Bessa">
+            <img src="assets/img/derick.jpg" class="img-fluid reveal-fade" alt="Derick Bessa">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content">
-            <h3 class="mobile-center">Desenvolvedor Full Stack &amp; Pesquisador de IA</h3>
+            <h3 class="mobile-center reveal-fade">Desenvolvedor Full Stack &amp; Pesquisador de IA</h3>
             <div style="text-align: justify;">
-              <p>
-                Bacharelando em Ciência da Computação no IFCE, com foco em desenvolvimento Full Stack e Inteligência Artificial aplicada.
-              </p>
-              <p>
-                Bolsista há 1 ano e meio no <strong>LAPISCO</strong> (Laboratório de Processamento de Imagens, Sinais e Computação Aplicada), onde atuei como Desenvolvedor Backend desenvolvendo um microserviço integrado a IA para reconhecimento de imagens, atingindo 97% de precisão em ambiente real.
-              </p>
-              <p>
-                Bolsista há 1 ano no <strong>LabVicia</strong> (Laboratório de Visão Computacional e Inteligência Artificial), onde atuo como Desenvolvedor Full Stack na construção de um SaaS acadêmico para uma plataforma de Assessoria Linguística.
-              </p>
-              <p>
-                Founder do <strong>TáNaLista</strong>, SaaS de gestão de eventos de pequena e grande escala, com o objetivo de eliminar filas de entrada de forma segura via check-in por QR Code.
-              </p>
-              <p>
-                Tenho experiência prática com React, Next.js, Angular, TypeScript, Node.js, Java/Spring Boot, Python, FastAPI e PostgreSQL, além de ferramentas como Docker, AWS e Git.
-              </p>
-              <p>
-                Estou sempre em busca de aprender e crescer, com interesse em desafios na área de desenvolvimento de software.
-              </p>
+              <p class="reveal-fade">Bacharelando em Ciência da Computação no IFCE, com foco em desenvolvimento Full Stack e Inteligência Artificial aplicada.</p>
+              <p class="reveal-fade">Bolsista há 1 ano e meio no <strong>LAPISCO</strong> (Laboratório de Processamento de Imagens, Sinais e Computação Aplicada), onde atuei como Desenvolvedor Backend desenvolvendo um microserviço integrado a IA para reconhecimento de imagens, atingindo 97% de precisão em ambiente real.</p>
+              <p class="reveal-fade">Bolsista há 1 ano no <strong>LabVicia</strong> (Laboratório de Visão Computacional e Inteligência Artificial), onde atuo como Desenvolvedor Full Stack na construção de um SaaS acadêmico para uma plataforma de Assessoria Linguística.</p>
+              <p class="reveal-fade">Founder do <strong>TáNaLista</strong>, SaaS de gestão de eventos de pequena e grande escala, com o objetivo de eliminar filas de entrada de forma segura via check-in por QR Code.</p>
+              <p class="reveal-fade">Tenho experiência prática com React, Next.js, Angular, TypeScript, Node.js, Java/Spring Boot, Python, FastAPI e PostgreSQL, além de ferramentas como Docker, AWS e Git.</p>
+              <p class="reveal-fade">Estou sempre em busca de aprender e crescer, com interesse em desafios na área de desenvolvimento de software.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ======= Resume Section ======= -->
+    <!-- ======= Resume ======= -->
     <section id="resume" class="resume">
-
-      <div class="section-title" data-aos="fade-up">
+      <div class="section-title reveal-fade" data-aos="fade-up">
         <h2>CURRÍCULO</h2>
         <p class="fst-italic">"A excelência não é um ato, mas um hábito." — Aristóteles</p>
+        <div class="resume-cv-buttons" style="justify-content: center; margin-top: 1.2rem;">
+          <a href="https://cv-resumes.vercel.app/BR/resume-ptbr.html" target="_blank" class="btn-cv-dark">
+            <i class="bx bx-download"></i> Baixar CV · PT
+          </a>
+          <a href="https://cv-resumes.vercel.app/english/resume.html" target="_blank" class="btn-cv-dark-outline">
+            <i class="bx bx-download"></i> Download CV · EN
+          </a>
+        </div>
       </div>
 
       <div class="container" data-aos="fade-up">
         <div class="row">
-
-          <div class="col-lg-6 pt-2 pt-lg-0 content">
-
-            <h3 class="resume-title">Resumo</h3>
+          <div class="col-lg-6 pt-2 pt-lg-0 content timeline-animated">
+            <h3 class="resume-title reveal-fade">Resumo</h3>
             <div class="resume-item pb-0" style="text-align: justify;">
               <h4>DERICK BESSA</h4>
-              <p><em>
-                Engenheiro de Software com foco em Full Stack e IA aplicada. Bolsista no LAPISCO e LabVicia, founder do TáNaLista. Experiência com React, Next.js, Angular, Node.js, Java/Spring Boot, Python/FastAPI e pipelines de visão computacional.
-              </em></p>
+              <p><em>Engenheiro de Software com foco em Full Stack e IA aplicada. Bolsista no LAPISCO e LabVicia, founder do TáNaLista. Experiência com React, Next.js, Angular, Node.js, Java/Spring Boot, Python/FastAPI e pipelines de visão computacional.</em></p>
               <ul>
                 <li>Fortaleza, Ceará — Serrinha, Brasil</li>
                 <li><a href="https://wa.me/5585987588044?text=Hi%21%20I%20liked%20your%20portfolio%20and%20I%27m%20curious%20to%20learn%20more%20about%20your%20work%21" target="_blank">+55 (85) 98758-8044</a></li>
-				<li><a href="mailto:derickbessa12@gmail.com">derickbessa12@gmail.com</a></li>
+                <li><a href="/cdn-cgi/l/email-protection#dbbfbea9b2b8b0b9bea8a8baeae99bbcb6bab2b7f5b8b4b6"><span class="__cf_email__" data-cfemail="4b2f2e39222820292e38382a7a790b2c262a222765282426">[email&#160;protected]</span></a></li>
               </ul>
             </div>
 
-            <h3 class="resume-title">Formação</h3>
+            <h3 class="resume-title reveal-fade">Formação</h3>
             <div class="resume-item" style="text-align: justify;">
               <h4>Bacharelado em Ciência da Computação</h4>
               <p><em>Instituto Federal de Educação, Ciência e Tecnologia do Ceará (IFCE)</em></p>
               <h5>2024 – 2028</h5>
             </div>
 
-            <h3 class="resume-title">Idiomas</h3>
+            <h3 class="resume-title reveal-fade">Idiomas</h3>
             <div class="resume-item" style="text-align: justify;">
               <h4>Inglês — Avançado</h4>
               <h4>Português — Nativo</h4>
             </div>
 
-            <h3 class="resume-title">Experiência Profissional</h3>
+            <h3 class="resume-title reveal-fade">Experiência Profissional</h3>
 
             <div class="resume-item" style="text-align: justify">
               <h4>Pesquisador & Desenvolvedor Backend</h4>
@@ -170,7 +481,7 @@
               <ul>
                 <li>Construí e evolui um SaaS completo de gestão acadêmica em Angular + Java/Spring Boot</li>
                 <li>Internacionalização da plataforma em 4 idiomas com troca dinâmica sem recarregamento</li>
-                <li>Otimização de performance no frontend e backend (Java/Spring Boot) com paginação server-side, reduzindo chamadas desnecessárias ao banco de dados</li>
+                <li>Otimização de performance no frontend e backend com paginação server-side</li>
                 <li>Redesenhei 10+ interfaces com Angular Material, padronizando UX na plataforma</li>
                 <li>Refatorei o módulo de inbox com polling em tempo real e carregamento paginado</li>
               </ul>
@@ -188,12 +499,10 @@
               </ul>
               <p><em>Tecnologias: React · JavaScript · Tailwind CSS · Vite · Node.js · Express · Git</em></p>
             </div>
-
           </div>
 
-          <div class="col-lg-6 pt-2 pt-lg-0 content">
-
-            <h3 class="resume-title">Projetos Pessoais</h3>
+          <div class="col-lg-6 pt-2 pt-lg-0 content timeline-animated">
+            <h3 class="resume-title reveal-fade">Projetos Pessoais</h3>
             <div class="resume-item" style="text-align: justify;">
               <h4>TáNaLista — Founder & Desenvolvedor Full Stack</h4>
               <h5>2025 – Atual</h5>
@@ -206,7 +515,7 @@
               <p><em>Tecnologias: Node.js · Express · Prisma · PostgreSQL · JWT · GitHub Actions · Vercel</em></p>
             </div>
 
-            <h3 class="resume-title">Habilidades Técnicas</h3>
+            <h3 class="resume-title reveal-fade">Habilidades Técnicas</h3>
 
             <div class="resume-item" style="text-align: justify;">
               <h4>Frontend</h4>
@@ -262,7 +571,7 @@
               </div>
             </div>
 
-            <h3 class="resume-title">Metodologias</h3>
+            <h3 class="resume-title reveal-fade">Metodologias</h3>
             <div class="resume-item">
               <ul>
                 <li>Agile / Scrum</li>
@@ -272,23 +581,20 @@
                 <li>CI/CD</li>
               </ul>
             </div>
-
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ======= Projects Section ======= -->
+    <!-- ======= Projects ======= -->
     <section id="projects" class="projects section light-background">
-
-      <div class="container section-title" data-aos="fade-up">
+      <div class="container section-title reveal-fade" data-aos="fade-up">
         <h2>Projetos</h2>
         <p class="fst-italic">Building real-world solutions, one commit at a time.</p>
       </div>
 
       <div class="container">
         <div class="row">
-
           <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
             <div class="projects-item position-relative">
               <div class="icon"><i class='bx bx-check-circle'></i></div>
@@ -297,7 +603,6 @@
               <a href="https://github.com/DerickBessa" target="_blank" class="read-more"><span>Ver mais</span><i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
-
           <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
             <div class="projects-item position-relative">
               <div class="icon"><i class='bx bx-camera'></i></div>
@@ -306,7 +611,6 @@
               <a href="https://github.com/DerickBessa" target="_blank" class="read-more"><span>Ver mais</span><i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
-
           <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
             <div class="projects-item position-relative">
               <div class="icon"><i class='bx bx-buildings'></i></div>
@@ -315,28 +619,25 @@
               <a href="https://github.com/DerickBessa" target="_blank" class="read-more"><span>Ver mais</span><i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
-
-         <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
-		<div class="projects-item position-relative">
-			<div class="icon"><i class='bx bx-conversation'></i></div>
-			<h4>Tradutor de Libras</h4>
-			<p>Sistema de reconhecimento de Libras em tempo real utilizando visão computacional e IA para tradução de gestos em linguagem natural.</p>
-			<a href="https://github.com/DerickBessa/TradutorDeLibras" target="_blank" class="read-more"><span>Ver mais</span><i class="bi bi-arrow-right"></i></a>
-		</div>
-		</div>
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+            <div class="projects-item position-relative">
+              <div class="icon"><i class='bx bx-conversation'></i></div>
+              <h4>Tradutor de Libras</h4>
+              <p>Sistema de reconhecimento de Libras em tempo real utilizando visão computacional e IA para tradução de gestos em linguagem natural.</p>
+              <a href="https://github.com/DerickBessa/TradutorDeLibras" target="_blank" class="read-more"><span>Ver mais</span><i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-
   </main>
 
-  <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="social-links">
       <a href="https://github.com/DerickBessa" class="github" aria-label="GitHub"><i class="bx bxl-github"></i></a>
       <a href="https://linkedin.com/in/derickbessa" class="linkedin" aria-label="LinkedIn"><i class="bx bxl-linkedin"></i></a>
       <a href="https://instagram.com/_dbessa" class="instagram" aria-label="Instagram"><i class="bx bxl-instagram"></i></a>
-      <a href="mailto:derickbessa12@gmail.com" class="email" aria-label="Email"><i class="bx bx-envelope"></i></a>
+      <a href="/cdn-cgi/l/email-protection#8eeaebfce7ede5ecebfdfdefbfbccee9e3efe7e2a0ede1e3" class="email" aria-label="Email"><i class="bx bx-envelope"></i></a>
     </div>
     <div class="thanks">
       <p>Obrigado por visitar o meu portfólio!</p>
@@ -351,8 +652,8 @@
     <i class="bi bi-arrow-up-short"></i>
   </a>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <!-- Vendor JS -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -362,7 +663,52 @@
   <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="main.js"></script>
+  <script src="chaos.js"></script>
 
+  <script>
+    /* ── Dark theme toggle ─────────────────────── */
+    function toggleDarkTheme() {
+      document.body.classList.toggle('dark-theme');
+      const btn = document.getElementById('toggle-dark-theme');
+      btn.classList.toggle('bi-sun');
+      btn.classList.toggle('bi-moon');
+    }
+
+    /* ── GSAP Hero entrance ────────────────────── */
+    window.addEventListener('load', () => {
+      const tl = gsap.timeline({ delay: 0.2 });
+      tl.to('#hero h1', { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' })
+        .to('#hero p:first-of-type', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.4')
+        .to('#hero .hero-tagline', { opacity: 0.62, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+        .to('#hero .cv-buttons', { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(1.5)' }, '-=0.2')
+        .to('#hero .cv-buttons-extra', { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(1.5)' }, '-=0.3')
+        .to('#hero .social-links', { opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.2');
+    });
+
+    /* ── Scroll reveal para .reveal-fade ──────── */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal-fade').forEach(el => revealObserver.observe(el));
+
+    /* ── Timeline resume stagger ──────────────── */
+    const timelineObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.resume-item').forEach((item, i) => {
+            setTimeout(() => item.classList.add('visible'), i * 120);
+          });
+        }
+      });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.timeline-animated').forEach(el => timelineObserver.observe(el));
+
+    /* ── AOS init ─────────────────────────────── */
+    AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true });
+  </script>
 </body>
-
 </html>

@@ -3,38 +3,38 @@
 --------------------------------------------------------------*/
 
 :root {
-  --link-color: #1a6b2e;
-  --font-color: #1a2433;
-  --accent-color-font: #1a3a5c;
-  --accent-color-bg: #1a3a5c;
+  --link-color: #0d9775;
+  --font-color: #000000;
+  --accent-color-font: #064b0c;
+  --accent-color-bg: #0e9909;
 
-  --white-color: #fff;
-  --white-background: #f5f3ee;
+  --white-color: #ffffff;
+  --white-background: #edfaef;
 
   --header-mobile-border: #d6d0c4;
-  --background-nav-menu: #e8e4dc;
-  --background-hero: #ede9e2cc;
-  --hero-font-color: #1a2433;
-  --hero-cor-rosa: #1a3a5c;
-  --fonte-mais-clara: #2c4a6e;
-  --cor-barra-horizontal-titulos: #c8c2b8;
-  --background-branco-mais-escuro: #ede9e2;
+  --background-nav-menu: #c2eec2;
+  --background-hero: #e8fae8c7;
+  --hero-font-color: #022e0e;
+  --hero-cor-rosa: #094116;
+  --fonte-mais-clara: #2c6e31;
+  --cor-barra-horizontal-titulos: #e9ffd8;
+  --background-branco-mais-escuro: #3baf30;
 
-  --dark-font-color: #c8d4c0;
-  --dark-accent-color-font: #00FF00;
-  --dark-accent-color-bg: #006600;
+  --dark-font-color: #d4d8d1;
+  --dark-accent-color-font: #9cf39ccb;
+  --dark-accent-color-bg: #011405;
 
   --dark-white-color: #e0e8d8;
-  --dark-white-background: #0a0a0a;
+  --dark-white-background: #020c06;
 
-  --dark-header-mobile-border: #1a2e1a;
-  --dark-background-nav-menu: #0f1a0f;
+  --dark-header-mobile-border: #0d180d;
+  --dark-background-nav-menu: #050a05;
   --dark-background-hero: #0d120dcc;
   --dark-hero-font-color: #a8c8a0;
-  --dark-hero-cor-rosa: #00FF00;
+  --dark-hero-cor-rosa: #68c51d;
   --dark-fonte-mais-clara: #5a9e5a;
   --dark-cor-barra-horizontal-titulos: #1a2e1a;
-  --dark-background-branco-mais-escuro: #0f180f;
+  --dark-background-branco-mais-escuro: #050705;
 }
 
 body {
@@ -116,6 +116,136 @@ h6 {
   border-radius: 50px;
   transition: all 0.4s;
 }
+
+/* Hero tagline */
+    .hero-tagline {
+      font-size: 18px !important;
+      color: var(--hero-font-color);
+      opacity: 0.65;
+      margin-top: 10px;
+      margin-bottom: 0;
+      max-width: 480px;
+      line-height: 1.55;
+      font-weight: 400;
+      font-family: "Open Sans", sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    @media (max-width: 992px) {
+      .hero-tagline {
+        font-size: 10px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    /* CV Buttons — hero */
+    .cv-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 1.4rem;
+    }
+
+    @media (max-width: 992px) {
+      .cv-buttons {
+        justify-content: center;
+      }
+    }
+
+    .btn-cv {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 20px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .btn-cv-primary {
+      background: var(--accent-color-bg);
+      color: var(--white-color);
+      border: 2px solid var(--accent-color-bg);
+    }
+
+    .btn-cv-primary:hover {
+      background: transparent;
+      color: var(--hero-cor-rosa);
+      border-color: var(--hero-cor-rosa);
+    }
+
+    .btn-cv-outline {
+      background: transparent;
+      color: var(--hero-font-color);
+      border: 2px solid var(--hero-font-color);
+      opacity: 0.75;
+    }
+
+    .btn-cv-outline:hover {
+      opacity: 1;
+      color: var(--hero-cor-rosa);
+      border-color: var(--hero-cor-rosa);
+    }
+
+    /* CV Buttons — resume section */
+    .resume-cv-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1.2rem;
+    }
+
+    .btn-cv-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 20px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-family: "Poppins", sans-serif;
+      background: var(--accent-color-bg);
+      color: var(--white-color);
+      border: 2px solid var(--accent-color-bg);
+    }
+
+    .btn-cv-dark:hover {
+      background: transparent;
+      color: var(--accent-color-font);
+      border-color: var(--accent-color-font);
+    }
+
+    .btn-cv-dark-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 20px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-family: "Poppins", sans-serif;
+      background: transparent;
+      color: var(--accent-color-font);
+      border: 2px solid var(--accent-color-font);
+    }
+
+    .btn-cv-dark-outline:hover {
+      background: var(--accent-color-bg);
+      color: var(--white-color);
+      border-color: var(--accent-color-bg);
+    }
 
 .back-to-top i {
   font-size: 28px;
